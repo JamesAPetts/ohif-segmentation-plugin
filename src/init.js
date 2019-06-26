@@ -8,6 +8,10 @@ import Brush3DAutoGatedTool from './tools/Brush3DAutoGatedTool.js';
 import FreehandRoi3DTool from './tools/FreehandRoi3DTool.js';
 import FreehandRoi3DSculptorTool from './tools/FreehandRoi3DSculptorTool.js';
 
+let TOOL_NAMES = {};
+
+export { TOOL_NAMES };
+
 const modules = store.modules;
 
 const defaultConfig = {
@@ -61,4 +65,11 @@ export default function init(configuration = {}) {
     name: config.freehandRoi3DSculptorTool,
     referencedToolName: config.freehandRoi3DTool
   });
+
+  // TODO -> Clean this up a bit after PW.
+  TOOL_NAMES.FREEHAND_ROI_3D_TOOL = config.freehandRoi3DTool;
+  TOOL_NAMES.FREEHAND_ROI_3D_SCULPTOR_TOOL = config.freehandRoi3DSculptorTool;
+  TOOL_NAMES.BRUSH_3D_TOOL = config.brush3dToolName;
+  TOOL_NAMES.BRUSH_3D_AUTO_GATED_TOOL = config.brush3DAutoGatedTool;
+  TOOL_NAMES.BRUSH_3D_HU_GATED_TOOL = config.brush3DHUGatedToolName;
 }
