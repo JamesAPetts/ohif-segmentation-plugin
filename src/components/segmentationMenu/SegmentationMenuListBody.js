@@ -1,8 +1,8 @@
-import React from "react";
-import SegmentationMenuListItem from "./SegmentationMenuListItem.js";
-import { newSegment } from "../../../lib/util/brushMetadataIO.js";
+import React from 'react';
+import SegmentationMenuListItem from './SegmentationMenuListItem.js';
+import { newSegment } from '../../util/brushMetadataIO.js';
 
-import "./segmentationMenu.styl";
+import './segmentationMenu.styl';
 
 /**
  * @class SegmentationMenuListBody - Renders a list of SegmentationMenuListItems,
@@ -14,16 +14,10 @@ export default class SegmentationMenuListBody extends React.Component {
   }
 
   render() {
-    const {
-      segments,
-      activeSegmentIndex,
-      onSegmentChange,
-      onEditClick,
-      onDeleteClick
-    } = this.props;
+    const { segments, activeSegmentIndex, onSegmentChange, onEditClick, onDeleteClick, enabledElement } = this.props;
 
     return (
-      <>
+      <React.Fragment>
         {segments.map(segment => (
           <SegmentationMenuListItem
             key={`${segment.metadata.SegmentLabel}_${segment.index}`}
@@ -33,20 +27,18 @@ export default class SegmentationMenuListBody extends React.Component {
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}
             checked={segment.index === activeSegmentIndex}
+            enabledElement={enabledElement}
           />
         ))}
         <tr>
           <th />
           <th>
-            <a
-              className="segmentation-menu-new-button btn btn-sm btn-primary"
-              onClick={newSegment}
-            >
+            <a className="segmentation-menu-new-button btn btn-sm btn-primary" onClick={newSegment}>
               <i className="fa fa-plus-circle" /> Segment
             </a>
           </th>
         </tr>
-      </>
+      </React.Fragment>
     );
   }
 }

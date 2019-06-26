@@ -1,7 +1,7 @@
-import React from "react";
-import LockedCollectionsListItem from "./LockedCollectionsListItem.js";
+import React from 'react';
+import LockedCollectionsListItem from './LockedCollectionsListItem.js';
 
-import "./roiContourMenu.styl";
+import './roiContourMenu.styl';
 
 /**
  * @class LockedCollectionsList - Renders a list of LockedCollectionsListItems,
@@ -16,7 +16,7 @@ export default class LockedCollectionsList extends React.Component {
     const { lockedCollections, onUnlockClick, seriesInstanceUid } = this.props;
 
     return (
-      <>
+      <React.Fragment>
         {lockedCollections.map(collection => (
           <LockedCollectionsListItem
             key={collection.metadata.uid}
@@ -25,7 +25,7 @@ export default class LockedCollectionsList extends React.Component {
             seriesInstanceUid={seriesInstanceUid}
           />
         ))}
-      </>
+      </React.Fragment>
     );
   }
 }

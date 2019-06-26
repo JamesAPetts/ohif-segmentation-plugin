@@ -66,7 +66,7 @@ export default class LockedCollectionsListItem extends React.Component {
     const showHideIcon = visible ? 'fa fa-eye' : 'fa fa-eye-slash';
 
     return (
-      <>
+      <React.Fragment>
         <tr className="roi-list-header">
           <td className="centered-cell">
             <a className="btn btn-sm btn-secondary" onClick={this.onToggleVisibilityClick}>
@@ -92,7 +92,7 @@ export default class LockedCollectionsListItem extends React.Component {
         </tr>
 
         {expanded && (
-          <>
+          <React.Fragment>
             <tr>
               <th />
               <th>Name</th>
@@ -107,9 +107,9 @@ export default class LockedCollectionsListItem extends React.Component {
                 <td className="centered-cell">{roiContour.metadata.polygonCount}</td>
               </tr>
             ))}
-          </>
+          </React.Fragment>
         )}
-      </>
+      </React.Fragment>
     );
   }
 }

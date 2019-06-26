@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/krasimir/webpack-library-starter.git"
+    "url": "https://github.com/JamesAPetts/ohif-segmentation-plugin"
   },
   "keywords": [
     "webpack",
@@ -27,9 +27,9 @@
   "author": "James A. Petts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/krasimir/webpack-library-starter/issues"
+    "url": "https://github.com/JamesAPetts/ohif-segmentation-plugin/issues"
   },
-  "homepage": "https://github.com/krasimir/webpack-library-starter",
+  "homepage": "https://github.com/JamesAPetts/ohif-segmentation-plugin",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
     "@babel/core": "^7.0.0-beta.51",

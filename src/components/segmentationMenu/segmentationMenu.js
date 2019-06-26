@@ -6,8 +6,8 @@ import SegmentationMenuListBody from './SegmentationMenuListBody.js';
 import SegmentationMenuListHeader from './SegmentationMenuListHeader.js';
 import BrushSettings from './BrushSettings.js';
 import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
-import { newSegmentInput, editSegmentInput } from '../../../lib/util/brushMetadataIO.js';
-import deleteSegment from '../../../lib/util/deleteSegment.js';
+import { newSegmentInput, editSegmentInput } from '../../util/brushMetadataIO.js';
+import deleteSegment from '../../util/deleteSegment.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
 import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
@@ -229,6 +229,7 @@ export default class SegmentationMenu extends React.Component {
       deleteConfirmationOpen,
       segmentToDelete,
       activeSegmentIndex,
+      enabledElement,
       importing,
       exporting
     } = this.state;
@@ -273,6 +274,7 @@ export default class SegmentationMenu extends React.Component {
                   onSegmentChange={this.onSegmentChange}
                   onEditClick={this.onEditClick}
                   onDeleteClick={this.confirmDeleteOnDeleteClick}
+                  enabledElement={enabledElement}
                 />
               </tbody>
             </table>
@@ -282,6 +284,6 @@ export default class SegmentationMenu extends React.Component {
       );
     }
 
-    return <>{component}</>;
+    return <React.Fragment>{component}</React.Fragment>;
   }
 }

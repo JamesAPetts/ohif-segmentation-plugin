@@ -1,5 +1,5 @@
-import React from "react";
-import "./segmentationMenu.styl";
+import React from 'react';
+import './segmentationMenu.styl';
 
 /**
  * @class SegmentationMenuDeleteConfirmation - Renders a confirmation dialog for
@@ -11,20 +11,13 @@ export default class SegmentationMenuDeleteConfirmation extends React.Component 
   }
 
   render() {
-    const {
-      segmentLabel,
-      onDeleteConfirmClick,
-      onDeleteCancelClick
-    } = this.props;
+    const { segmentLabel, onDeleteConfirmClick, onDeleteCancelClick } = this.props;
 
     return (
       <div>
         <div>
           <h5>Warning!</h5>
-          <p>
-            Are you sure you want to delete {segmentLabel}? This cannot be
-            undone.
-          </p>
+          <p>Are you sure you want to delete {segmentLabel}? This cannot be undone.</p>
         </div>
         <div className="seg-delete-horizontal-box">
           <a className="btn btn-sm btn-primary" onClick={onDeleteConfirmClick}>

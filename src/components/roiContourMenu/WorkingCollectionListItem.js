@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./roiContourMenu.styl";
+import './roiContourMenu.styl';
 
 /**
  * @class WorkingCollectionListItem - Renders metadata for the working
@@ -12,13 +12,7 @@ export default class WorkingCollectionListItem extends React.Component {
   }
 
   render() {
-    const {
-      roiContourIndex,
-      metadata,
-      onRoiChange,
-      onRenameButtonClick,
-      activeROIContourIndex
-    } = this.props;
+    const { roiContourIndex, metadata, onRoiChange, onRenameButtonClick, activeROIContourIndex } = this.props;
 
     const checked = activeROIContourIndex === roiContourIndex;
     const name = metadata.name;
@@ -28,12 +22,8 @@ export default class WorkingCollectionListItem extends React.Component {
     return (
       <tr>
         <td className="left-aligned-cell">
-          <i className="fa fa-square" style={{ color: roiContourColor }} />{" "}
-          <input
-            type="radio"
-            checked={checked}
-            onChange={() => onRoiChange(roiContourIndex)}
-          />
+          <i className="fa fa-square" style={{ color: roiContourColor }} />{' '}
+          <input type="radio" checked={checked} onChange={() => onRoiChange(roiContourIndex)} />
         </td>
         <td className="left-aligned-cell">
           <a

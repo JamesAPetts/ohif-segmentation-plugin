@@ -1,6 +1,6 @@
 import init, { TOOL_NAMES } from './init.js';
-// import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
-// import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
+import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
+import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',

@@ -1,7 +1,7 @@
-import React from "react";
-import WorkingCollectionListItem from "./WorkingCollectionListItem.js";
+import React from 'react';
+import WorkingCollectionListItem from './WorkingCollectionListItem.js';
 
-import "./roiContourMenu.styl";
+import './roiContourMenu.styl';
 
 /**
  * @class WorkingRoiCollectionList - Renders a list of
@@ -23,7 +23,7 @@ export default class WorkingRoiCollectionList extends React.Component {
     } = this.props;
 
     return (
-      <>
+      <React.Fragment>
         <tr className="roi-list-header">
           <th />
           <th colSpan="4"> New ROI Contour Collection</th>
@@ -49,15 +49,12 @@ export default class WorkingRoiCollectionList extends React.Component {
         <tr>
           <th />
           <th>
-            <a
-              className="roi-contour-menu-new-button btn btn-sm btn-primary"
-              onClick={onNewRoiButtonClick}
-            >
+            <a className="roi-contour-menu-new-button btn btn-sm btn-primary" onClick={onNewRoiButtonClick}>
               <i className="fa fa-plus-circle" /> ROI
             </a>
           </th>
         </tr>
-      </>
+      </React.Fragment>
     );
   }
 }

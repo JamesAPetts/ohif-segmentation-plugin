@@ -1,12 +1,9 @@
-import React from "react";
-import { cornerstone, cornerstoneTools } from "meteor/ohif:cornerstone";
-import { OHIF } from "meteor/ohif:core";
-import {
-  newSegmentInput,
-  editSegmentInput
-} from "../../../lib/util/brushMetadataIO.js";
+import React from 'react';
+import cornerstone from 'cornerstone-core';
+import cornerstoneTools from 'cornerstone-tools';
+import { newSegmentInput, editSegmentInput } from '../../util/brushMetadataIO.js';
 
-import "./segmentationMenu.styl";
+import './segmentationMenu.styl';
 
 const brushModule = cornerstoneTools.store.modules.brush;
 
@@ -26,12 +23,9 @@ export default class SegmentationMenuListItem extends React.Component {
   _getTypeWithModifier() {
     const { metadata } = this.props;
 
-    let typeWithModifier =
-      metadata.SegmentedPropertyTypeCodeSequence.CodeMeaning;
+    let typeWithModifier = metadata.SegmentedPropertyTypeCodeSequence.CodeMeaning;
 
-    const modifier =
-      metadata.SegmentedPropertyTypeCodeSequence
-        .SegmentedPropertyTypeModifierCodeSequence;
+    const modifier = metadata.SegmentedPropertyTypeCodeSequence.SegmentedPropertyTypeModifierCodeSequence;
 
     if (modifier) {
       typeWithModifier += ` (${modifier.CodeMeaning})`;
@@ -41,41 +35,20 @@ export default class SegmentationMenuListItem extends React.Component {
   }
 
   render() {
-    const {
-      metadata,
-      segmentIndex,
-      onSegmentChange,
-      onEditClick,
-      onDeleteClick,
-      checked
-    } = this.props;
+    const { metadata, segmentIndex, onSegmentChange, onEditClick, onDeleteClick, checked, enabledElement } = this.props;
 
     const segmentLabel = metadata.SegmentLabel;
-
-    const activeEnabledElement = OHIF.viewerbase.viewportUtils.getEnabledElementForActiveElement();
-    const activeElement = activeEnabledElement.element;
-
-    const colormap = brushModule.getters.activeCornerstoneColorMap(
-      activeElement
-    );
-
+    const colormap = brushModule.getters.activeCornerstoneColorMap(enabledElement);
     const color = colormap.getColor(segmentIndex);
-
-    console.log(segmentIndex);
-
-    console.log(colormap);
-    console.log(color);
-
     const segmentColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1.0 )`;
 
-    const segmentCategory =
-      metadata.SegmentedPropertyCategoryCodeSequence.CodeMeaning;
+    const segmentCategory = metadata.SegmentedPropertyCategoryCodeSequence.CodeMeaning;
     const typeWithModifier = this._getTypeWithModifier();
 
     return (
       <tr>
         <td className="centered-cell">
-          <i className="fa fa-square" style={{ color: segmentColor }} />{" "}
+          <i className="fa fa-square" style={{ color: segmentColor }} />{' '}
           <input
             type="radio"
             checked={checked}
@@ -102,7 +75,7 @@ export default class SegmentationMenuListItem extends React.Component {
             }}
           >
             {typeWithModifier}
-            {" - "}
+            {' - '}
             {segmentCategory}
           </a>
         </td>

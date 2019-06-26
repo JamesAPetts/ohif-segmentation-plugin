@@ -1,9 +1,9 @@
-import React from "react";
-import { cornerstone, cornerstoneTools } from "meteor/ohif:cornerstone";
+import React from 'react';
+import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
 
 const modules = cornerstoneTools.store.modules;
 
-import "./roiContourMenu.styl";
+import './roiContourMenu.styl';
 
 /**
  * @class RoiContourSettings - A component that allows the user to change
@@ -54,34 +54,28 @@ export default class RoiContourSettings extends React.Component {
     return (
       <div className="roi-contour-menu-footer">
         <h3>Settings</h3>
-        <a
-          className="btn btn-sm btn-secondary"
-          onClick={this.onInterpolateToggleClick}
-        >
+        <a className="btn btn-sm btn-secondary" onClick={this.onInterpolateToggleClick}>
           <div className="roi-contour-menu-option">
             <svg>
               <use
                 xlinkHref={
-                  interpolate
-                    ? "packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-interpolate-on"
-                    : "packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-interpolate-off"
+                  interpolate ?
+                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-interpolate-on' :
+                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-interpolate-off'
                 }
               />
             </svg>
             <label>Interpolation</label>
           </div>
         </a>
-        <a
-          className="btn btn-sm btn-secondary"
-          onClick={this.onDisplayStatsToggleClick}
-        >
+        <a className="btn btn-sm btn-secondary" onClick={this.onDisplayStatsToggleClick}>
           <div className="roi-contour-menu-option">
             <svg>
               <use
                 xlinkHref={
-                  displayStats
-                    ? "packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-stats-on"
-                    : "packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-stats-off"
+                  displayStats ?
+                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-stats-on' :
+                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-stats-off'
                 }
               />
             </svg>

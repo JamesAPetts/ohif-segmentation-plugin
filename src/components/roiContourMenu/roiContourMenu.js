@@ -5,7 +5,7 @@ import LockedCollectionsList from './LockedCollectionsList.js';
 import RoiContourSettings from './RoiContourSettings.js';
 import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
 import { createNewVolume, setVolumeName } from '../../../lib/util/freehandNameIO.js';
-import unlockStructureSet from '../../../lib/util/unlockStructureSet.js';
+import unlockStructureSet from '../../util/unlockStructureSet.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
 import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
@@ -400,6 +400,6 @@ export default class RoiContourMenu extends React.Component {
       );
     }
 
-    return <>{component}</>;
+    return <React.Fragment>{component}</React.Fragment>;
   }
 }
