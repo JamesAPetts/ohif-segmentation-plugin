@@ -34,6 +34,9 @@ export default {
    * clicked, etc.
    */
   getToolbarModule() {
+    console.log('in getToolbarModule:');
+    console.log(TOOL_NAMES);
+
     return {
       definitions: [
         {

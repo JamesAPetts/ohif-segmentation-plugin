@@ -72,4 +72,8 @@ export default function init(configuration = {}) {
   TOOL_NAMES.BRUSH_3D_TOOL = config.brush3dToolName;
   TOOL_NAMES.BRUSH_3D_AUTO_GATED_TOOL = config.brush3DAutoGatedTool;
   TOOL_NAMES.BRUSH_3D_HU_GATED_TOOL = config.brush3DHUGatedToolName;
+
+  console.log(config);
+
+  console.log(TOOL_NAMES);
 }
