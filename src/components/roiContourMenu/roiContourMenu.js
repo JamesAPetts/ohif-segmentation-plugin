@@ -32,7 +32,17 @@ export default class RoiContourMenu extends React.Component {
 
     this.getRoiContourList = this.getRoiContourList.bind(this);
 
-    const { workingCollection, lockedCollections, activeROIContourIndex } = this.getRoiContourList(seriesInstanceUid);
+    let workingCollection = [];
+    let lockedCollections = [];
+    let activeROIContourIndex = 1;
+
+    if (seriesInstanceUid) {
+      const roiContourList = this.getRoiContourList(seriesInstanceUid);
+
+      workingCollection = roiContourList.workingCollection;
+      lockedCollections = roiContourList.lockedCollections;
+      activeROIContourIndex = roiContourList.activeROIContourIndex;
+    }
 
     this.state = {
       workingCollection,
