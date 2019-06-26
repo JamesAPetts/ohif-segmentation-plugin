@@ -4,7 +4,6 @@ import cornerstone from 'cornerstone';
 import cornerstoneTools from 'cornerstone-tools';
 
 const brushModule = cornerstoneTools.store.modules.brush;
-
 const categories = GeneralAnatomyList.SegmentationCodes.Category;
 
 const validIcon = 'fa fa-check fa-2x';
