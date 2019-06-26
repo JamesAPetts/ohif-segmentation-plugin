@@ -1,4 +1,4 @@
-import cornerstone from 'cornerstone-tools';
+import cornerstone from 'cornerstone-core';
 
 export default function getSeriesInstanceUidFromEnabledElement(enabledElement) {
   if (!enabledElement) {

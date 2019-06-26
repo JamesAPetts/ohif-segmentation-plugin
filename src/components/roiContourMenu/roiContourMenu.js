@@ -4,7 +4,6 @@ import WorkingCollectionList from './WorkingCollectionList.js';
 import LockedCollectionsList from './LockedCollectionsList.js';
 import RoiContourSettings from './RoiContourSettings.js';
 import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
-import getActiveSeriesInstanceUid from '../../../lib/util/getActiveSeriesInstanceUid.js';
 import { createNewVolume, setVolumeName } from '../../../lib/util/freehandNameIO.js';
 import unlockStructureSet from '../../../lib/util/unlockStructureSet.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';

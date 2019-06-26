@@ -1,22 +1,18 @@
-import React from "react";
-import MenuIOButtons from "../common/MenuIOButtons.js";
-import SegmentationMenuDeleteConfirmation from "./SegmentationMenuDeleteConfirmation.js";
-import SegmentationMenuListItem from "./SegmentationMenuListItem.js";
-import SegmentationMenuListBody from "./SegmentationMenuListBody.js";
-import SegmentationMenuListHeader from "./SegmentationMenuListHeader.js";
-import BrushSettings from "./BrushSettings.js";
-import { cornerstone, cornerstoneTools } from "meteor/ohif:cornerstone";
-import { OHIF } from "meteor/ohif:core";
-import getActiveSeriesInstanceUid from "../../../lib/util/getActiveSeriesInstanceUid.js";
-import {
-  newSegmentInput,
-  editSegmentInput
-} from "../../../lib/util/brushMetadataIO.js";
-import deleteSegment from "../../../lib/util/deleteSegment.js";
-import onIOCancel from "../common/helpers/onIOCancel.js";
-import onImportButtonClick from "../common/helpers/onImportButtonClick.js";
-import onExportButtonClick from "../common/helpers/onExportButtonClick.js";
-import "./segmentationMenu.styl";
+import React from 'react';
+import MenuIOButtons from '../common/MenuIOButtons.js';
+import SegmentationMenuDeleteConfirmation from './SegmentationMenuDeleteConfirmation.js';
+import SegmentationMenuListItem from './SegmentationMenuListItem.js';
+import SegmentationMenuListBody from './SegmentationMenuListBody.js';
+import SegmentationMenuListHeader from './SegmentationMenuListHeader.js';
+import BrushSettings from './BrushSettings.js';
+import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
+import getActiveSeriesInstanceUid from '../../../lib/util/getActiveSeriesInstanceUid.js';
+import { newSegmentInput, editSegmentInput } from '../../../lib/util/brushMetadataIO.js';
+import deleteSegment from '../../../lib/util/deleteSegment.js';
+import onIOCancel from '../common/helpers/onIOCancel.js';
+import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
+import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
+import './segmentationMenu.styl';
 
 const brushModule = cornerstoneTools.store.modules.brush;
 
@@ -31,9 +27,7 @@ export default class SegmentationMenu extends React.Component {
 
     this.onSegmentChange = this.onSegmentChange.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
-    this.confirmDeleteOnDeleteClick = this.confirmDeleteOnDeleteClick.bind(
-      this
-    );
+    this.confirmDeleteOnDeleteClick = this.confirmDeleteOnDeleteClick.bind(this);
     this.onDeleteCancelClick = this.onDeleteCancelClick.bind(this);
     this.onDeleteConfirmClick = this.onDeleteConfirmClick.bind(this);
     this.onImportButtonClick = onImportButtonClick.bind(this);
@@ -44,7 +38,7 @@ export default class SegmentationMenu extends React.Component {
     this._segments = this._segments.bind(this);
 
     this.state = {
-      importMetadata: { name: "", label: "" },
+      importMetadata: { name: '', label: '' },
       segments: [],
       deleteConfirmationOpen: false,
       segmentToDelete: 1,
@@ -72,9 +66,7 @@ export default class SegmentationMenu extends React.Component {
     const importMetadata = this._importMetadata();
     const segments = this._segments();
 
-    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(
-      this._element
-    );
+    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(this._element);
 
     this.setState({
       importMetadata,
@@ -93,9 +85,7 @@ export default class SegmentationMenu extends React.Component {
     const importMetadata = this._importMetadata();
     const segments = this._segments();
 
-    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(
-      this._element
-    );
+    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(this._element);
 
     this.setState({
       importMetadata,
@@ -183,22 +173,20 @@ export default class SegmentationMenu extends React.Component {
    */
   _importMetadata() {
     const seriesInstanceUid = this._seriesInstanceUid;
-    const importMetadata = brushModule.getters.importMetadata(
-      seriesInstanceUid
-    );
+    const importMetadata = brushModule.getters.importMetadata(seriesInstanceUid);
 
     if (importMetadata) {
       return {
         label: importMetadata.label,
         type: importMetadata.type,
         name: importMetadata.name,
-        modified: importMetadata.modified ? "true" : " false"
+        modified: importMetadata.modified ? 'true' : ' false'
       };
     }
 
     return {
-      name: "New Segmentation Collection",
-      label: ""
+      name: 'New Segmentation Collection',
+      label: ''
     };
   }
 
@@ -245,23 +233,11 @@ export default class SegmentationMenu extends React.Component {
     let component;
 
     if (importing) {
-      component = (
-        <ImportCallbackOrComponent
-          onImportComplete={this.onIOComplete}
-          onImportCancel={this.onIOCancel}
-        />
-      );
+      component = <ImportCallbackOrComponent onImportComplete={this.onIOComplete} onImportCancel={this.onIOCancel} />;
     } else if (exporting) {
-      component = (
-        <ExportCallbackOrComponent
-          onExportComplete={this.onIOComplete}
-          onExportCancel={this.onIOCancel}
-        />
-      );
+      component = <ExportCallbackOrComponent onExportComplete={this.onIOComplete} onExportCancel={this.onIOCancel} />;
     } else if (deleteConfirmationOpen) {
-      const segmentLabel = segments.find(
-        segment => segment.index === segmentToDelete
-      ).metadata.SegmentLabel;
+      const segmentLabel = segments.find(segment => segment.index === segmentToDelete).metadata.SegmentLabel;
 
       component = (
         <SegmentationMenuDeleteConfirmation
