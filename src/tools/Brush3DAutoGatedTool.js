@@ -1,4 +1,4 @@
-import cornerstoneTools from 'cornerstone-core';
+import cornerstoneTools from 'cornerstone-tools';
 import Brush3DHUGatedTool from './Brush3DHUGatedTool.js';
 
 const { getCircle } = cornerstoneTools.importInternalModule('util/brushUtils');
