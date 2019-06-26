@@ -1,4 +1,6 @@
 import init, { TOOL_NAMES } from './init.js';
+// import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
+// import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',
@@ -101,5 +103,25 @@ export default {
   /**
    * Not yet implemented
    */
-  getPanelModule: () => null
+  getPanelModule: () => {
+    /*
+    return {
+      menuOptions: [
+        {
+          icon: 'th-list',
+          label: 'Segments',
+          target: 'segment-panel'
+        }
+      ],
+      components: [
+        {
+          id: 'segment-panel',
+          component:
+        }
+      ],
+      defaultContext: ['VIEWER']
+    };
+    */
+    return null;
+  }
 };

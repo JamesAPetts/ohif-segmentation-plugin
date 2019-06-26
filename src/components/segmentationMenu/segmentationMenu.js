@@ -6,13 +6,15 @@ import SegmentationMenuListBody from './SegmentationMenuListBody.js';
 import SegmentationMenuListHeader from './SegmentationMenuListHeader.js';
 import BrushSettings from './BrushSettings.js';
 import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
-import getActiveSeriesInstanceUid from '../../../lib/util/getActiveSeriesInstanceUid.js';
 import { newSegmentInput, editSegmentInput } from '../../../lib/util/brushMetadataIO.js';
 import deleteSegment from '../../../lib/util/deleteSegment.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
 import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
 import './segmentationMenu.styl';
+
+import getActiveViewportEnabledElement from '../../util/getActiveViewportEnabledElement.js';
+import getSeriesInstanceUidFromEnabledElement from '../../util/getSeriesInstanceUidFromEnabledElement.js';
 
 const brushModule = cornerstoneTools.store.modules.brush;
 
@@ -25,6 +27,25 @@ export default class SegmentationMenu extends React.Component {
   constructor(props = {}) {
     super(props);
 
+    const enabledElement = getActiveViewportEnabledElement(props.viewports, props.activeIndex);
+    const seriesInstanceUid = getSeriesInstanceUidFromEnabledElement(enabledElement);
+
+    this.getSegmentList = this.getSegmentList.bind(this);
+
+    const { segments, importMetadata, activeSegmentIndex } = this.getSegmentList(enabledElement, seriesInstanceUid);
+
+    this.state = {
+      importMetadata,
+      segments,
+      seriesInstanceUid,
+      enabledElement,
+      deleteConfirmationOpen: false,
+      segmentToDelete: 1,
+      activeSegmentIndex,
+      importing: false,
+      exporting: false
+    };
+
     this.onSegmentChange = this.onSegmentChange.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
     this.confirmDeleteOnDeleteClick = this.confirmDeleteOnDeleteClick.bind(this);
@@ -34,39 +55,25 @@ export default class SegmentationMenu extends React.Component {
     this.onExportButtonClick = onExportButtonClick.bind(this);
     this.onIOComplete = this.onIOComplete.bind(this);
     this.onIOCancel = onIOCancel.bind(this);
-    this._importMetadata = this._importMetadata.bind(this);
-    this._segments = this._segments.bind(this);
-
-    this.state = {
-      importMetadata: { name: '', label: '' },
-      segments: [],
-      deleteConfirmationOpen: false,
-      segmentToDelete: 1,
-      activeSegmentIndex: 1,
-      importing: false,
-      exporting: false
-    };
   }
 
   /**
-   * componentDidMount - Grabs the segments from the brushStore and
+   * getSegmentList - Grabs the segments from the brushStore and
    * populates state.
    *
    * @returns {null}
    */
-  componentDidMount() {
-    const activeEnabledElement = OHIF.viewerbase.viewportUtils.getEnabledElementForActiveElement();
+  getSegmentList(enabledElement, seriesInstanceUid) {
+    enabledElement = enabledElement || this.state.enabledElement;
+    seriesInstanceUid = seriesInstanceUid || this.state.seriesInstanceUid;
 
-    if (!activeEnabledElement) {
+    if (!enabledElement || !seriesInstanceUid) {
       return [];
     }
 
-    this._element = activeEnabledElement.element;
-
-    const importMetadata = this._importMetadata();
-    const segments = this._segments();
-
-    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(this._element);
+    const importMetadata = this.constructor._importMetadata(seriesInstanceUid);
+    const segments = this.constructor._segments(enabledElement);
+    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(enabledElement);
 
     this.setState({
       importMetadata,
@@ -82,10 +89,11 @@ export default class SegmentationMenu extends React.Component {
    * @returns {type}  description
    */
   onIOComplete() {
-    const importMetadata = this._importMetadata();
-    const segments = this._segments();
+    const { seriesInstanceUid, enabledElement } = this.state.seriesInstanceUid;
 
-    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(this._element);
+    const importMetadata = this.constructor._importMetadata(seriesInstanceUid);
+    const segments = this.constructor._segments(enabledElement);
+    const activeSegmentIndex = brushModule.getters.activeSegmentIndex(enabledElement);
 
     this.setState({
       importMetadata,
@@ -103,7 +111,9 @@ export default class SegmentationMenu extends React.Component {
    * @returns {null}
    */
   onSegmentChange(segmentIndex) {
-    brushModule.setters.activeSegmentIndex(this._element, segmentIndex);
+    const enabledElement = this.state.element;
+
+    brushModule.setters.activeSegmentIndex(enabledElement, segmentIndex);
 
     this.setState({ activeSegmentIndex: segmentIndex });
   }
@@ -138,15 +148,11 @@ export default class SegmentationMenu extends React.Component {
    * @returns {null}
    */
   onDeleteConfirmClick() {
-    const { segmentToDelete } = this.state;
+    const { segmentToDelete, enabledElement } = this.state;
 
-    const t0 = performance.now();
+    brushModule.setters.deleteSegment(enabledElement, segmentToDelete);
 
-    brushModule.setters.deleteSegment(this._element, segmentToDelete);
-
-    const t1 = performance.now();
-
-    const segments = this._segments();
+    const segments = this.constructor._segments(enabledElement);
 
     this.setState({
       deleteConfirmationOpen: false,
@@ -171,8 +177,7 @@ export default class SegmentationMenu extends React.Component {
    *
    * @returns {object} The importMetadata.
    */
-  _importMetadata() {
-    const seriesInstanceUid = this._seriesInstanceUid;
+  static _importMetadata(seriesInstanceUid) {
     const importMetadata = brushModule.getters.importMetadata(seriesInstanceUid);
 
     if (importMetadata) {
@@ -195,9 +200,9 @@ export default class SegmentationMenu extends React.Component {
    *
    * @returns {object[]} An array of segment metadata.
    */
-  _segments() {
+  static _segments(element) {
     // TODO -> support for multiple labelmaps.
-    const segmentMetadata = brushModule.getters.metadata(this._element);
+    const segmentMetadata = brushModule.getters.metadata(element);
 
     if (!segmentMetadata) {
       return [];

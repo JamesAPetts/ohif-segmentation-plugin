@@ -55,10 +55,14 @@ export default class RoiContourMenu extends React.Component {
     this.onIOCancel = onIOCancel.bind(this);
     this.onImportButtonClick = onImportButtonClick.bind(this);
     this.onExportButtonClick = onExportButtonClick.bind(this);
-    this._workingCollection = this._workingCollection.bind(this);
-    this._lockedCollections = this._lockedCollections.bind(this);
   }
 
+  /**
+   * getRoiContourList - returns the workingCollection, lockedCollections
+   * and th activeROIContourIndex.
+   *
+   * @returns {null}
+   */
   getRoiContourList(seriesInstanceUid) {
     seriesInstanceUid = seriesInstanceUid || this.state.seriesInstanceUid;
 
@@ -73,8 +77,8 @@ export default class RoiContourMenu extends React.Component {
         activeROIContourIndex = freehand3DStore.getters.activeROIContourIndex(seriesInstanceUid);
       }
 
-      const workingCollection = this._workingCollection(seriesInstanceUid);
-      const lockedCollections = this._lockedCollections(seriesInstanceUid);
+      const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
+      const lockedCollections = this.constructor._lockedCollections(seriesInstanceUid);
     }
 
     return {
@@ -85,7 +89,7 @@ export default class RoiContourMenu extends React.Component {
   }
 
   /**
-   * componentDidMount - Grabs the ROI Contours from the freehand3D store and
+   * refreshRoiContourList - Grabs the ROI Contours from the freehand3D store and
    * populates state.
    *
    * @returns {null}
@@ -115,8 +119,8 @@ export default class RoiContourMenu extends React.Component {
       activeROIContourIndex = freehand3DStore.getters.activeROIContourIndex(seriesInstanceUid);
     }
 
-    const workingCollection = this._workingCollection(seriesInstanceUid);
-    const lockedCollections = this._lockedCollections(seriesInstanceUid);
+    const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
+    const lockedCollections = this.constructor._lockedCollections(seriesInstanceUid);
 
     this.setState({
       workingCollection,
@@ -150,7 +154,7 @@ export default class RoiContourMenu extends React.Component {
         name
       );
 
-      const workingCollection = this._workingCollection(seriesInstanceUid);
+      const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
 
       this.setState({ workingCollection, activeROIContourIndex });
     };
@@ -182,7 +186,7 @@ export default class RoiContourMenu extends React.Component {
     const seriesInstanceUid = this.state.seriesInstanceUid;
 
     const callback = () => {
-      const workingCollection = this._workingCollection(seriesInstanceUid);
+      const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
 
       this.setState({ workingCollection });
     };
@@ -215,8 +219,8 @@ export default class RoiContourMenu extends React.Component {
 
     unlockStructureSet(seriesInstanceUid, roiCollectionToUnlock);
 
-    const workingCollection = this._workingCollection(seriesInstanceUid);
-    const lockedCollections = this._lockedCollections(seriesInstanceUid);
+    const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
+    const lockedCollections = this.constructor._lockedCollections(seriesInstanceUid);
 
     this.setState({
       unlockConfirmationOpen: false,
@@ -358,8 +362,6 @@ export default class RoiContourMenu extends React.Component {
         </div>
       );
     } else {
-      console.log(lockedCollections.length);
-
       component = (
         <div className="roi-contour-menu-component">
           <div className="roi-contour-menu-header">
