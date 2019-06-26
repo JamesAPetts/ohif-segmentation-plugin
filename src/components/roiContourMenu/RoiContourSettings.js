@@ -1,9 +1,9 @@
 import React from 'react';
-import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
+import cornerstoneTools from 'cornerstone-tools';
 
 const modules = cornerstoneTools.store.modules;
 
-import './roiContourMenu.styl';
+// import './roiContourMenu.styl';
 
 /**
  * @class RoiContourSettings - A component that allows the user to change

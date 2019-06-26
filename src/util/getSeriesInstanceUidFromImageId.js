@@ -1,4 +1,4 @@
-import { OHIF } from 'meteor/ohif:core';
+import cornerstone from 'cornerstone-core';
 
 /**
  * Extracts the seriesInstanceUid from an image, given the imageId.
@@ -6,7 +6,7 @@ import { OHIF } from 'meteor/ohif:core';
  * @param {String} imageId The ID of the image being queried.
  */
 export default function getSeriesInstanceUidFromImageId(imageId) {
-  const metaData = OHIF.viewer.metadataProvider.getMetadata(imageId);
+  const generalSeriesModule = cornerstone.metaData.get('generalSeriesModule', imageId);
 
-  return metaData.series.seriesInstanceUid;
+  return generalSeriesModule.seriesInstanceUID;
 }

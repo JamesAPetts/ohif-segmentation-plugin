@@ -1,8 +1,10 @@
-import { store } from 'cornerstone-tools';
-import getSeriesInstanceUidFromEnabledElement from './getSeriesInstanceUidFromEnabledElement.js';
+// import { store } from 'cornerstone-tools';
+// import getSeriesInstanceUidFromEnabledElement from './getSeriesInstanceUidFromEnabledElement.js';
 
-const modules = store.modules;
+// const modules = store.modules;
 
+// TODO -> Redefine this when we rebuild input.
+/*
 function createNewVolumeCallback(name, element) {
   // Create and activate new ROIContour
   const activeSeriesInstanceUid = getSeriesInstanceUidFromEnabledElement(element);
@@ -14,6 +16,7 @@ function createNewVolumeCallback(name, element) {
 
   modules.freehand3D.setters.ROIContourAndSetIndexActive(activeSeriesInstanceUid, 'DEFAULT', name);
 }
+*/
 
 /**
  * Opens UI that allows user to chose a name for a new volume, and processes
@@ -23,11 +26,9 @@ function createNewVolumeCallback(name, element) {
 
 // TODO -> Implement dialogs or smth.
 export function createNewVolume(callback) {
-  const freehandSetNameDialog = document.getElementById('freehandSetNameDialog');
-
+  // const freehandSetNameDialog = document.getElementById('freehandSetNameDialog');
   // JamesAPetts
   // const dialogData = Blaze.getData(freehandSetNameDialog);
-
   // dialogData.freehandSetNameDialogDefaultName.set('');
   // dialogData.freehandSetNameDialogId.set(Math.random().toString());
   // dialogData.freehandSetNameDialogCallback.set(callback || createNewVolumeCallback);
@@ -45,6 +46,8 @@ export function createNewVolume(callback) {
  */
 
 export function setVolumeName(seriesInstanceUid, structureSetUid, ROIContourUid, callback) {
+  // TODO -> setVolumeName
+  /*
   const ROIContour = modules.freehand3D.getters.ROIContour(seriesInstanceUid, structureSetUid, ROIContourUid);
 
   // Current name:
@@ -73,4 +76,5 @@ export function setVolumeName(seriesInstanceUid, structureSetUid, ROIContourUid,
   dialogData.freehandSetNameDialogId.set(Math.random().toString());
   dialogData.freehandSetNameDialogCallback.set(setVolumeNameCallback);
   freehandSetNameDialog.showModal();
+  */
 }

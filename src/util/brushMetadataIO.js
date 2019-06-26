@@ -1,7 +1,6 @@
 import { store } from 'cornerstone-tools';
 
-import getSeriesInstanceUidFromEnabledElement from 'getSeriesInstanceUidFromEnabledElement.js';
-import generateBrushMetadata from '../../lib/util/generateBrushMetadata.js';
+import generateBrushMetadata from './generateBrushMetadata.js';
 
 const brushModule = store.modules.brush;
 
@@ -61,6 +60,8 @@ function segmentInputCallback(data) {
 
 // TODO -> Need to make this into a react-modal?
 function brushMetdataInput(segIndex, metadata, callback) {
+  console.log('TODO: Remake brushMetadata input menu!');
+  /*
   const brushMetadataDialog = document.getElementById('brushMetadataDialog');
   const dialogData = Blaze.getData(brushMetadataDialog);
 
@@ -69,4 +70,5 @@ function brushMetdataInput(segIndex, metadata, callback) {
   dialogData.brushMetadataDialogCallback.set(callback);
 
   brushMetadataDialog.showModal();
+  */
 }

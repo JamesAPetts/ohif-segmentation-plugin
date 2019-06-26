@@ -2,7 +2,7 @@ import React from 'react';
 import SegmentationMenuListItem from './SegmentationMenuListItem.js';
 import { newSegment } from '../../util/brushMetadataIO.js';
 
-import './segmentationMenu.styl';
+// import './segmentationMenu.styl';
 
 /**
  * @class SegmentationMenuListBody - Renders a list of SegmentationMenuListItems,

@@ -1,6 +1,5 @@
 import { store, globalImageIdSpecificToolStateManager } from 'cornerstone-tools';
 
-import { OHIF } from 'meteor/ohif:core';
 import getSeriesInstanceUidFromImageId from './getSeriesInstanceUidFromImageId.js';
 
 const modules = store.modules;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './menuIOButtons.styl';
+// import './menuIOButtons.styl';
 
 /**
  * @class MenuIOButtons - Renders Import and/or Export buttons if

@@ -1,7 +1,7 @@
 import React from 'react';
 import cornerstoneTools from 'cornerstone-tools';
 
-import './roiContourMenu.styl';
+// import './roiContourMenu.styl';
 
 const modules = cornerstoneTools.store.modules;
 

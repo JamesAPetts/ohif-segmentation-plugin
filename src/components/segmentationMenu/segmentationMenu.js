@@ -1,17 +1,15 @@
 import React from 'react';
 import MenuIOButtons from '../common/MenuIOButtons.js';
 import SegmentationMenuDeleteConfirmation from './SegmentationMenuDeleteConfirmation.js';
-import SegmentationMenuListItem from './SegmentationMenuListItem.js';
 import SegmentationMenuListBody from './SegmentationMenuListBody.js';
 import SegmentationMenuListHeader from './SegmentationMenuListHeader.js';
 import BrushSettings from './BrushSettings.js';
-import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
-import { newSegmentInput, editSegmentInput } from '../../util/brushMetadataIO.js';
-import deleteSegment from '../../util/deleteSegment.js';
+import cornerstoneTools from 'cornerstone-tools';
+import { editSegmentInput } from '../../util/brushMetadataIO.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
 import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
-import './segmentationMenu.styl';
+// import './segmentationMenu.styl';
 
 import getActiveViewportEnabledElement from '../../util/getActiveViewportEnabledElement.js';
 import getSeriesInstanceUidFromEnabledElement from '../../util/getSeriesInstanceUidFromEnabledElement.js';

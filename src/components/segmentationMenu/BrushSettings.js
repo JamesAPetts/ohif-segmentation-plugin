@@ -1,10 +1,10 @@
 import React from 'react';
-import { cornerstoneTools } from 'meteor/ohif:cornerstone';
+import { cornerstoneTools } from 'cornerstone-tools';
 
 const brushModule = cornerstoneTools.store.modules.brush;
 const brushState = brushModule.state;
 
-import './segmentationMenu.styl';
+// import './segmentationMenu.styl';
 
 const minGateSeperation = 10;
 
@@ -120,7 +120,7 @@ export default class BrushSettings extends React.Component {
     const holeFillRange = brushState.holeFillRange;
     const strayRemoveRange = brushState.strayRemoveRange;
 
-    const { holeFill, strayRemove, activeGate, customGateRangeMin, customGateRangeMax } = this.state;
+    const { holeFill, strayRemove, activeGate } = this.state;
 
     const gates = brushState.gates;
 

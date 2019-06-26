@@ -1,9 +1,7 @@
 import React from 'react';
-import cornerstone from 'cornerstone-core';
 import cornerstoneTools from 'cornerstone-tools';
-import { newSegmentInput, editSegmentInput } from '../../util/brushMetadataIO.js';
 
-import './segmentationMenu.styl';
+// import './segmentationMenu.styl';
 
 const brushModule = cornerstoneTools.store.modules.brush;
 

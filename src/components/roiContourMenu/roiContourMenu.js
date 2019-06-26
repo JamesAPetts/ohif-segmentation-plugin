@@ -3,13 +3,13 @@ import MenuIOButtons from '../common/MenuIOButtons.js';
 import WorkingCollectionList from './WorkingCollectionList.js';
 import LockedCollectionsList from './LockedCollectionsList.js';
 import RoiContourSettings from './RoiContourSettings.js';
-import { cornerstone, cornerstoneTools } from 'meteor/ohif:cornerstone';
-import { createNewVolume, setVolumeName } from '../../../lib/util/freehandNameIO.js';
+import cornerstoneTools from 'cornerstone-tools';
+import { createNewVolume, setVolumeName } from '../../util/freehandNameIO.js';
 import unlockStructureSet from '../../util/unlockStructureSet.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
 import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
-import './roiContourMenu.styl';
+// import './roiContourMenu.styl';
 
 import getActiveViewportEnabledElement from '../../util/getActiveViewportEnabledElement.js';
 import getSeriesInstanceUidFromEnabledElement from '../../util/getSeriesInstanceUidFromEnabledElement.js';
@@ -30,7 +30,7 @@ export default class RoiContourMenu extends React.Component {
     const enabledElement = getActiveViewportEnabledElement(props.viewports, props.activeIndex);
     const seriesInstanceUid = getSeriesInstanceUidFromEnabledElement(enabledElement);
 
-    this.getRoiContourList = getRoiContourList.bind(this);
+    this.getRoiContourList = this.getRoiContourList.bind(this);
 
     const { workingCollection, lockedCollections, activeROIContourIndex } = this.getRoiContourList(seriesInstanceUid);
 
@@ -77,8 +77,8 @@ export default class RoiContourMenu extends React.Component {
         activeROIContourIndex = freehand3DStore.getters.activeROIContourIndex(seriesInstanceUid);
       }
 
-      const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
-      const lockedCollections = this.constructor._lockedCollections(seriesInstanceUid);
+      workingCollection = this.constructor._workingCollection(seriesInstanceUid);
+      lockedCollections = this.constructor._lockedCollections(seriesInstanceUid);
     }
 
     return {
@@ -95,6 +95,8 @@ export default class RoiContourMenu extends React.Component {
    * @returns {null}
    */
   refreshRoiContourList() {
+    const seriesInstanceUid = this.state.seriesInstanceUid;
+
     const { workingCollection, lockedCollections, activeROIContourIndex } = this.getRoiContourList(seriesInstanceUid);
 
     this.setState({

@@ -1,7 +1,7 @@
 import React from 'react';
 import LockedCollectionsListItem from './LockedCollectionsListItem.js';
 
-import './roiContourMenu.styl';
+// import './roiContourMenu.styl';
 
 /**
  * @class LockedCollectionsList - Renders a list of LockedCollectionsListItems,
