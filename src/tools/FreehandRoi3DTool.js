@@ -128,7 +128,7 @@ export default class FreehandRoi3DTool extends FreehandRoiTool {
     const activeROIContour = freehand3DStore.getters.activeROIContour(seriesInstanceUid);
 
     if (!activeROIContour) {
-      freehand3DStore.setters.ROIContour(seriesInstanceUid, 'DEFAULT', 'Unnamed Lesion');
+      freehand3DStore.setters.ROIContourAndSetIndexActive(seriesInstanceUid, 'DEFAULT', 'Unnamed Lesion');
     }
   }
 
