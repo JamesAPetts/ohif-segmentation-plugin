@@ -1,6 +1,9 @@
 import init, { TOOL_NAMES } from './init.js';
-import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
-import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
+// import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
+// import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
+import Dummy from './components/Dummy.js';
+// import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
+// import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',
@@ -36,9 +39,6 @@ export default {
    * clicked, etc.
    */
   getToolbarModule() {
-    console.log('in getToolbarModule:');
-    console.log(TOOL_NAMES);
-
     return {
       definitions: [
         {
@@ -101,27 +101,33 @@ export default {
   },
 
   /**
-   * Not yet implemented
+   * Totally implemented, for real now.
    */
-  getPanelModule: () => {
-    /*
+  getPanelModule() {
     return {
       menuOptions: [
         {
           icon: 'th-list',
           label: 'Segments',
           target: 'segment-panel'
+        },
+        {
+          icon: 'th',
+          label: 'Contours',
+          target: 'contour-panel'
         }
       ],
       components: [
         {
           id: 'segment-panel',
-          component:
+          component: Dummy
+        },
+        {
+          id: 'contour-panel',
+          component: Dummy
         }
       ],
       defaultContext: ['VIEWER']
     };
-    */
-    return null;
   }
 };

@@ -20,7 +20,7 @@
 
   "parser": "babel-eslint",
 
-  "plugins": [],
+  "plugins": ["eslint-plugin-react"],
 
   "rules": {
     "block-scoped-var": 2,
@@ -43,6 +43,7 @@
     "guard-for-in": 0,
     "handle-callback-err": [2, "^(err|error|anySpecificError)$"],
     "indent": [2, 2, { "SwitchCase": 1 }],
+    "react/jsx-uses-vars": 1,
     "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
     "keyword-spacing": [2, { "before": true, "after": true }],
     "linebreak-style": 0,

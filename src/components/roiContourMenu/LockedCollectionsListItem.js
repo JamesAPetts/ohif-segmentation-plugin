@@ -56,7 +56,7 @@ export default class LockedCollectionsListItem extends React.Component {
   }
 
   render() {
-    const { collection, onUnlockClick, seriesInstanceUid } = this.props;
+    const { collection, onUnlockClick } = this.props;
     const { expanded, visible } = this.state;
 
     const metadata = collection.metadata;
