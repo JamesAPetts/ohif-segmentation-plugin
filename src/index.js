@@ -1,7 +1,7 @@
 import init, { TOOL_NAMES } from './init.js';
 import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
-// import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
-import Dummy from './components/Dummy.js';
+import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
+// import Dummy from './components/Dummy.js';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',
@@ -122,7 +122,7 @@ export default {
         },
         {
           id: 'contour-panel',
-          component: Dummy
+          component: RoiContourMenu
         }
       ],
       defaultContext: ['VIEWER']
