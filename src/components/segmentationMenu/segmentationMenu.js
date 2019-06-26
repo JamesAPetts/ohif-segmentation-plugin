@@ -25,12 +25,21 @@ export default class SegmentationMenu extends React.Component {
   constructor(props = {}) {
     super(props);
 
+    this.getSegmentList = this.getSegmentList.bind(this);
+
     const enabledElement = getActiveViewportEnabledElement(props.viewports, props.activeIndex);
     const seriesInstanceUid = getSeriesInstanceUidFromEnabledElement(enabledElement);
 
-    this.getSegmentList = this.getSegmentList.bind(this);
+    let segments = [];
+    let activeSegmentIndex = 1;
+    const importMetadata = this.constructor._importMetadata(seriesInstanceUid);
 
-    const { segments, importMetadata, activeSegmentIndex } = this.getSegmentList(enabledElement, seriesInstanceUid);
+    if (enabledElement) {
+      const segmentList = this.getSegmentList(enabledElement, seriesInstanceUid);
+
+      segments = segmentList.segments;
+      activeSegmentIndex = segmentList.segments;
+    }
 
     this.state = {
       importMetadata,
@@ -69,15 +78,13 @@ export default class SegmentationMenu extends React.Component {
       return [];
     }
 
-    const importMetadata = this.constructor._importMetadata(seriesInstanceUid);
     const segments = this.constructor._segments(enabledElement);
     const activeSegmentIndex = brushModule.getters.activeSegmentIndex(enabledElement);
 
-    this.setState({
-      importMetadata,
+    return {
       segments,
       activeSegmentIndex
-    });
+    };
   }
 
   /**

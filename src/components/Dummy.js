@@ -12,7 +12,7 @@ export default class Dummy extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div>Hello World Panel</div>
+        <div>Hello Panel</div>
       </React.Fragment>
     );
   }
