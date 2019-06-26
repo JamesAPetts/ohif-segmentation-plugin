@@ -1,4 +1,4 @@
-import init from './init.js';
+import init, { TOOL_NAMES } from './init.js';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',
@@ -22,7 +22,7 @@ export default {
   getCommandsModule() {
     return {
       defaultContext: 'VIEWER',
-      actions: {},
+      actions: [],
       definitions: []
     };
   },
@@ -46,14 +46,16 @@ export default {
               label: 'Draw',
               icon: 'level',
               type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-              commandName: 'enableFreehandRoi'
+              commandName: 'setToolActive',
+              commandOptions: { toolName: TOOL_NAMES.FREEHAND_ROI_3D_TOOL }
             },
             {
               id: 'FreehandRoiSculptor',
               label: 'Sculpt',
               icon: 'level',
               type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-              commandName: 'enableFreehandRoiSculptor'
+              commandName: 'setToolActive',
+              commandOptions: { toolName: TOOL_NAMES.FREEHAND_ROI_3D_SCULPTOR_TOOL }
             }
           ]
         },
@@ -67,21 +69,24 @@ export default {
               label: 'Manual',
               icon: 'level',
               type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-              commandName: 'enabledBrush'
+              commandName: 'setToolActive',
+              commandOptions: { toolName: TOOL_NAMES.BRUSH_3D_TOOL }
             },
             {
               id: 'Brush3DHUGatedTool',
               label: 'Smart CT',
               icon: 'level',
               type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-              commandName: 'enabledBrush3DHUGatedTool'
+              commandName: 'setToolActive',
+              commandOptions: { toolName: TOOL_NAMES.BRUSH_3D_HU_GATED_TOOL }
             },
             {
               id: 'Brush3DAutoGatedTool',
               label: 'Auto',
               icon: 'level',
               type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-              commandName: 'enabledBrush3DAutoGatedTool'
+              commandName: 'setToolActive',
+              commandOptions: { toolName: TOOL_NAMES.BRUSH_3D_AUTO_GATED_TOOL }
             }
           ]
         }
