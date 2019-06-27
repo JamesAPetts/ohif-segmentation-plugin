@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import './roiContourMenu.styl';
+import './roiContourMenu.styl';
 
 /**
  * @class WorkingCollectionListItem - Renders metadata for the working

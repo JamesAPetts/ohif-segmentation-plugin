@@ -4,7 +4,6 @@ import WorkingCollectionList from './WorkingCollectionList.js';
 import LockedCollectionsList from './LockedCollectionsList.js';
 import RoiContourSettings from './RoiContourSettings.js';
 import cornerstoneTools from 'cornerstone-tools';
-import { createNewVolume, setVolumeName } from '../../util/freehandNameIO.js';
 import unlockStructureSet from '../../util/unlockStructureSet.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
@@ -152,26 +151,23 @@ export default class RoiContourMenu extends React.Component {
   onNewRoiButtonClick() {
     const seriesInstanceUid = this.state.seriesInstanceUid;
 
-    const callback = name => {
-      // Create and activate new ROIContour
+    const freehand3DStore = modules.freehand3D;
+    let series = freehand3DStore.getters.series(seriesInstanceUid);
 
-      // Check if default structureSet exists for this series.
-      if (!modules.freehand3D.getters.series(seriesInstanceUid)) {
-        modules.freehand3D.setters.series(seriesInstanceUid);
-      }
+    if (!series) {
+      freehand3DStore.setters.series(seriesInstanceUid);
+      series = freehand3DStore.getters.series(seriesInstanceUid);
+    }
 
-      const activeROIContourIndex = modules.freehand3D.setters.ROIContourAndSetIndexActive(
-        seriesInstanceUid,
-        'DEFAULT',
-        name
-      );
+    const activeROIContourIndex = freehand3DStore.setters.ROIContourAndSetIndexActive(
+      seriesInstanceUid,
+      'DEFAULT',
+      'Unnamed Lesion'
+    );
 
-      const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
+    const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
 
-      this.setState({ workingCollection, activeROIContourIndex });
-    };
-
-    createNewVolume(callback);
+    this.setState({ workingCollection, activeROIContourIndex });
   }
 
   /**
@@ -195,15 +191,8 @@ export default class RoiContourMenu extends React.Component {
    * @returns {null}
    */
   onRenameButtonClick(metadata) {
-    const seriesInstanceUid = this.state.seriesInstanceUid;
-
-    const callback = () => {
-      const workingCollection = this.constructor._workingCollection(seriesInstanceUid);
-
-      this.setState({ workingCollection });
-    };
-
-    setVolumeName(seriesInstanceUid, 'DEFAULT', metadata.uid, callback);
+    // const seriesInstanceUid = this.state.seriesInstanceUid;
+    // TODO -> switch the element to a text box and allow input.
   }
 
   /**

@@ -1,8 +1,7 @@
-@import "{ohif:design}/app"
 @import "../peppermint-table.styl"
 
 .segmentation-menu
-  theme('color', '$textPrimaryColor')
+  color: var(--text-primary-color)
   z-index: 1000
 
   text-align: center
@@ -51,28 +50,28 @@
     overflow-y: auto
     overflow-x: hidden
     word-wrap: break-word
-    theme('scrollbar-color', '$textSecondaryColor $uiGrayDarkest')
+    scrollbar-color: var(--text-secondary-color) var(--ui-gray-darkest)
 
     &::-webkit-scrollbar
-      them('background', '$uiGrayDarkest')
+      background: var(--ui-gray-darkest)
       width: 10px
 
     &::-webkit-scrollbar-thumb
-      theme('background', '$textSecondaryColor')
+      background var(--text-secondary-color)
       border-radius: 10px
-      theme('border-right', '2px solid $uiGrayDarkest')
+      border-right: 2px solid var(--ui-gray-darkest)
 
     .segmentation-menu-name-link
-      theme('color', '$textPrimaryColor')
+      color: var(--text-primary-color)
 
       &:hover
-        theme('color', '$textSecondaryColor')
+        color: var(--text-secondary-color)
 
   .segmentation-menu-footer
     margin: 10px
     padding: 10px
-    theme('background', '$uiGrayDark')
-    theme('border', '1px solid $uiBorderColor')
+    background: var(--ui-gray-dark)
+    border: 1px solid var(--ui-border-color)
 
     select
       width: 80%

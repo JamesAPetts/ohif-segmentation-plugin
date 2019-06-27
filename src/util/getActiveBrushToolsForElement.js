@@ -8,7 +8,8 @@ export default function (viewports) {
 
   const element = enabledElement.element;
 
-  tools = store.state.tools;
+  let tools = store.state.tools;
+
   tools = tools.filter(tool => tool.element === element && tool.mode === 'active');
 
   return tools.filter(tool => tool instanceof BaseBrushTool);

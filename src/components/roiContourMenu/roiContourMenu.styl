@@ -1,9 +1,7 @@
-@import "{ohif:design}/app"
 @import "../peppermint-table.styl"
 
 .roi-contour-menu
-  theme('color', '$textPrimaryColor')
-  z-index: 1000
+  color: var(--text-primary-color)
 
   text-align: center
   height: 100%
@@ -35,23 +33,23 @@
     padding-left: 18px
     overflow-y: auto
     overflow-x: hidden
-    theme('scrollbar-color', '$textSecondaryColor $uiGrayDarkest')
+    scrollbar-color: var(--text-secondary-color) var(ui-gray-darkest)
     word-wrap: break-word
 
     &::-webkit-scrollbar
-      them('background', '$uiGrayDarkest')
+      background: var(--ui-gray-darkest)
       width: 10px
 
     &::-webkit-scrollbar-thumb
-      theme('background', '$textSecondaryColor')
+      background: var(--text-secondary-color)
       border-radius: 10px
-      theme('border-right', '2px solid $uiGrayDarkest')
+      border-right: 2px solid var(--ui-gray-darkest)
 
     .roi-contour-menu-name-link
-      theme('color', '$textPrimaryColor')
+      color: var(--text-primary-color)
 
       &:hover
-        theme('color', '$textSecondaryColor')
+        color: var(--text-secondary-color)
 
   .roi-contour-menu-new-button
     float: center
@@ -65,8 +63,8 @@
   .roi-contour-menu-footer
     margin: 10px
     padding: 10px
-    theme('background', '$uiGrayDark')
-    theme('border', '1px solid $uiBorderColor')
+    background: var(--ui-gray-dark)
+    border: 1px solid var(--ui-border-color)
 
     .roi-contour-menu-option
       display: -webkit-flex

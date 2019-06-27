@@ -4,7 +4,7 @@ import cornerstoneTools from 'cornerstone-tools';
 const brushModule = cornerstoneTools.store.modules.brush;
 const brushState = brushModule.state;
 
-// import './segmentationMenu.styl';
+import './segmentationMenu.styl';
 
 const minGateSeperation = 10;
 

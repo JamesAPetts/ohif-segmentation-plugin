@@ -3,7 +3,7 @@ import cornerstoneTools from 'cornerstone-tools';
 
 const modules = cornerstoneTools.store.modules;
 
-// import './roiContourMenu.styl';
+import './roiContourMenu.styl';
 
 /**
  * @class RoiContourSettings - A component that allows the user to change
@@ -58,10 +58,10 @@ export default class RoiContourSettings extends React.Component {
           <div className="roi-contour-menu-option">
             <svg>
               <use
-                xlinkHref={
+                href={
                   interpolate ?
-                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-interpolate-on' :
-                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-interpolate-off'
+                    'assets/icons.svg#icon-freehand-interpolate-on' :
+                    'assets/icons.svg#icon-freehand-interpolate-off'
                 }
               />
             </svg>
@@ -73,9 +73,7 @@ export default class RoiContourSettings extends React.Component {
             <svg>
               <use
                 xlinkHref={
-                  displayStats ?
-                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-stats-on' :
-                    'packages/icr_peppermint-tools/assets/icons.svg#icon-freehand-stats-off'
+                  displayStats ? 'assets/icons.svg#icon-freehand-stats-on' : 'assets/icons.svg#icon-freehand-stats-off'
                 }
               />
             </svg>

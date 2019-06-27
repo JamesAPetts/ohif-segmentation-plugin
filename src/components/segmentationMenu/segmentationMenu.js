@@ -9,7 +9,7 @@ import { editSegmentInput } from '../../util/brushMetadataIO.js';
 import onIOCancel from '../common/helpers/onIOCancel.js';
 import onImportButtonClick from '../common/helpers/onImportButtonClick.js';
 import onExportButtonClick from '../common/helpers/onExportButtonClick.js';
-// import './segmentationMenu.styl';
+import './segmentationMenu.styl';
 
 import getActiveViewportEnabledElement from '../../util/getActiveViewportEnabledElement.js';
 import getSeriesInstanceUidFromEnabledElement from '../../util/getSeriesInstanceUidFromEnabledElement.js';

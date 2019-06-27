@@ -1,5 +1,5 @@
 import React from 'react';
-// import './segmentationMenu.styl';
+import './segmentationMenu.styl';
 
 /**
  * @class SegmentationMenuListHeader - Renders the header for the

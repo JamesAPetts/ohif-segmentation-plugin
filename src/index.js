@@ -1,7 +1,7 @@
 import init, { TOOL_NAMES } from './init.js';
+import commandsModule from './commandsModule.js';
 import SegmentationMenu from './components/segmentationMenu/SegmentationMenu.js';
 import RoiContourMenu from './components/roiContourMenu/RoiContourMenu.js';
-// import Dummy from './components/Dummy.js';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',
@@ -23,11 +23,7 @@ export default {
    * the primary means for...
    */
   getCommandsModule() {
-    return {
-      defaultContext: 'VIEWER',
-      actions: [],
-      definitions: []
-    };
+    return commandsModule;
   },
 
   /**
@@ -98,9 +94,6 @@ export default {
     };
   },
 
-  /**
-   * Totally implemented, for real now.
-   */
   getPanelModule() {
     return {
       menuOptions: [
