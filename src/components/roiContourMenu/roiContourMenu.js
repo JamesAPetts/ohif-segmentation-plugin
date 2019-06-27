@@ -80,10 +80,10 @@ export default class RoiContourMenu extends React.Component {
     let activeROIContourIndex = 0;
 
     if (seriesInstanceUid) {
-      const freehand3DStore = modules.freehand3D;
+      const freehand3DModule = modules.freehand3D;
 
-      if (modules.freehand3D.getters.series(seriesInstanceUid)) {
-        activeROIContourIndex = freehand3DStore.getters.activeROIContourIndex(seriesInstanceUid);
+      if (freehand3DModule.getters.series(seriesInstanceUid)) {
+        activeROIContourIndex = freehand3DModule.getters.activeROIContourIndex(seriesInstanceUid);
       }
 
       workingCollection = this.constructor._workingCollection(seriesInstanceUid);
