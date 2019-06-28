@@ -1,9 +1,9 @@
 import React from 'react';
 import cornerstoneTools from 'cornerstone-tools';
+import { Icon } from 'react-viewerbase';
+import './roiContourMenu.styl';
 
 const modules = cornerstoneTools.store.modules;
-
-import './roiContourMenu.styl';
 
 /**
  * @class RoiContourSettings - A component that allows the user to change
@@ -17,7 +17,7 @@ export default class RoiContourSettings extends React.Component {
 
     this.state = {
       interpolate,
-      displayStats
+      displayStats,
     };
 
     this.onDisplayStatsToggleClick = this.onDisplayStatsToggleClick.bind(this);
@@ -52,34 +52,37 @@ export default class RoiContourSettings extends React.Component {
     const { interpolate, displayStats } = this.state;
 
     return (
-      <div className="roi-contour-menu-footer">
+      <div
+        style={{
+          backgroundColor: 'var(--ui-gray-dark)',
+          outline: '1px solid var(--ui-border-color)',
+          borderRadius: '4px',
+        }}
+        className="roi-contour-menu-footer"
+      >
         <h3>Settings</h3>
-        <a className="btn btn-sm btn-secondary" onClick={this.onInterpolateToggleClick}>
-          <div className="roi-contour-menu-option">
-            <svg>
-              <use
-                href={
-                  interpolate ?
-                    'assets/icons.svg#icon-freehand-interpolate-on' :
-                    'assets/icons.svg#icon-freehand-interpolate-off'
-                }
-              />
-            </svg>
-            <label>Interpolation</label>
-          </div>
-        </a>
-        <a className="btn btn-sm btn-secondary" onClick={this.onDisplayStatsToggleClick}>
-          <div className="roi-contour-menu-option">
-            <svg>
-              <use
-                xlinkHref={
-                  displayStats ? 'assets/icons.svg#icon-freehand-stats-on' : 'assets/icons.svg#icon-freehand-stats-off'
-                }
-              />
-            </svg>
-            <label>Stats</label>
-          </div>
-        </a>
+        <div
+          style={{ cursor: 'select' }}
+          onClick={this.onInterpolateToggleClick}
+        >
+          <label>
+            {interpolate ? <Icon name="check" /> : <Icon name="times" />}
+            Interpolation
+          </label>
+        </div>
+
+        {/* <div onClick={this.onDisplayStatsToggleClick}>
+          <svg>
+            <use
+              xlinkHref={
+                displayStats
+                  ? 'assets/icons.svg#icon-freehand-stats-on'
+                  : 'assets/icons.svg#icon-freehand-stats-off'
+              }
+            />
+          </svg>
+          <label>Stats</label>
+        </div> */}
       </div>
     );
   }
