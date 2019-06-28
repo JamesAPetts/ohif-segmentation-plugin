@@ -2,11 +2,10 @@ import { store, EVENTS, importInternalModule } from 'cornerstone-tools';
 import cornerstone from 'cornerstone-core';
 
 import Brush3DTool from './Brush3DTool.js';
+import floodFill from './n-dimensional-flood-fill.js';
 
 const brushModule = store.modules.brush;
 const { getCircle, drawBrushPixels } = importInternalModule('util/brushUtils');
-
-import floodFill from './n-dimensional-flood-fill.js';
 
 export default class Brush3DHUGatedTool extends Brush3DTool {
   constructor(configuration = {}) {
@@ -51,15 +50,29 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
     }
 
     const radius = brushModule.state.radius;
-    const pointerArray = this._gateCircle(image, getCircle(radius, rows, columns, x, y));
+    const pointerArray = this._gateCircle(
+      image,
+      getCircle(radius, rows, columns, x, y)
+    );
 
-    const { labelmap3D, currentImageIdIndex, activeLabelmapIndex, shouldErase } = this.paintEventData;
+    const {
+      labelmap3D,
+      currentImageIdIndex,
+      activeLabelmapIndex,
+      shouldErase,
+    } = this.paintEventData;
 
     // Draw / Erase the active color.
-    drawBrushPixels(pointerArray, labelmap3D, currentImageIdIndex, columns, shouldErase);
+    drawBrushPixels(
+      pointerArray,
+      labelmap3D,
+      currentImageIdIndex,
+      columns,
+      shouldErase
+    );
 
     cornerstone.triggerEvent(element, EVENTS.LABELMAP_MODIFIED, {
-      activeLabelmapIndex
+      activeLabelmapIndex,
     });
 
     cornerstone.updateImage(evt.detail.element);
@@ -150,7 +163,13 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
     const xSize = max[0] - min[0] + 1;
     const ySize = max[1] - min[1] + 1;
 
-    const data = this._boxGatedCircle(circle, gatedCircleArray, min, xSize, ySize);
+    const data = this._boxGatedCircle(
+      circle,
+      gatedCircleArray,
+      min,
+      xSize,
+      ySize
+    );
 
     // Define our getter for accessing the data structure.
     function getter(x, y) {
@@ -159,7 +178,12 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
 
     this._floodFillEmptyRegionsFromEdges(data, getter);
 
-    const { holes, regions } = this._findHolesAndRegions(circle, data, getter, min);
+    const { holes, regions } = this._findHolesAndRegions(
+      circle,
+      data,
+      getter,
+      min
+    );
 
     const largestRegionArea = this._getAreaOfLargestRegion(regions);
 
@@ -167,7 +191,10 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
     for (let r = 0; r < regions.length; r++) {
       const region = regions[r];
 
-      if (region.length <= (brushModule.state.strayRemove / 100.0) * largestRegionArea) {
+      if (
+        region.length <=
+        (brushModule.state.strayRemove / 100.0) * largestRegionArea
+      ) {
         for (let p = 0; p < region.length; p++) {
           data[region[p][0]][region[p][1]] = 3;
         }
@@ -178,7 +205,10 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
     for (let r = 0; r < holes.length; r++) {
       const hole = holes[r];
 
-      if (hole.length <= (brushModule.state.holeFill / 100.0) * largestRegionArea) {
+      if (
+        hole.length <=
+        (brushModule.state.holeFill / 100.0) * largestRegionArea
+      ) {
         for (let p = 0; p < hole.length; p++) {
           data[hole[p][0]][hole[p][1]] = 5;
         }
@@ -289,7 +319,7 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
       if (data[i][j] === 1) {
         const result = floodFill({
           getter: getter,
-          seed: [i, j]
+          seed: [i, j],
         });
 
         const flooded = result.flooded;
@@ -328,7 +358,7 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
       if (data[i][j] === 1) {
         const result = floodFill({
           getter: getter,
-          seed: [i, j]
+          seed: [i, j],
         });
 
         const flooded = result.flooded;
@@ -341,7 +371,7 @@ export default class Brush3DHUGatedTool extends Brush3DTool {
       } else if (data[i][j] === 2) {
         const result = floodFill({
           getter: getter,
-          seed: [i, j]
+          seed: [i, j],
         });
 
         const flooded = result.flooded;

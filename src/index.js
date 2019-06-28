@@ -111,10 +111,14 @@ export default {
       components: [
         {
           id: 'segment-panel',
+          from: 'right',
+          width: '500px',
           component: SegmentationMenu
         },
         {
           id: 'contour-panel',
+          from: 'right',
+          width: '500px',
           component: RoiContourMenu
         }
       ],
