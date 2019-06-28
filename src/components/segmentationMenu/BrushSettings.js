@@ -23,7 +23,7 @@ export default class BrushSettings extends React.Component {
       strayRemove: brushState.strayRemove,
       activeGate: brushState.activeGate,
       customGateRangeMin: customGateRange[0],
-      customGateRangeMax: customGateRange[1],
+      customGateRangeMax: customGateRange[1]
     };
 
     this.onGateChange = this.onGateChange.bind(this);
@@ -124,15 +124,12 @@ export default class BrushSettings extends React.Component {
 
     const gates = brushState.gates;
 
-    const holeFillLabel =
-      holeFill === 0
-        ? "Don't fill holes."
-        : `Fill holes <${holeFill}% area of primary region.`;
+    const holeFillLabel = holeFill === 0 ? "Don't fill holes." : `Fill holes <${holeFill}% area of primary region.`;
 
     const strayRemoveLabel =
-      strayRemove === 0
-        ? 'Paint all non-primary regions.'
-        : `Don't paint regions <${strayRemove}% area of primary region.`;
+      strayRemove === 0 ?
+        'Paint all non-primary regions.' :
+        `Don't paint regions <${strayRemove}% area of primary region.`;
 
     let customGates = null;
 
@@ -174,15 +171,9 @@ export default class BrushSettings extends React.Component {
     return (
       <div className="segmentation-menu-footer">
         <h3> Smart CT Gate Selection</h3>
-        <select
-          className="form-themed form-control"
-          onChange={this.onGateChange}
-          value={activeGate}
-        >
+        <select className="form-themed form-control" onChange={this.onGateChange} value={activeGate}>
           {gates.map(gate => (
-            <option key={gate.name} value={gate.name}>{`${gate.name} [${
-              gate.range[0]
-            }, ${gate.range[1]}]`}</option>
+            <option key={gate.name} value={gate.name}>{`${gate.name} [${gate.range[0]}, ${gate.range[1]}]`}</option>
           ))}
         </select>
 

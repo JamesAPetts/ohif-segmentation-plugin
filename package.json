@@ -61,7 +61,8 @@
     "cornerstone-math": "^0.1.8",
     "cornerstone-tools": "4.0.0-rc3",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-viewerbase": "0.10.0"
   },
   "nyc": {
     "sourceMap": false,

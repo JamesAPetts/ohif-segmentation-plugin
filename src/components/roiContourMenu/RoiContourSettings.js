@@ -13,27 +13,13 @@ export default class RoiContourSettings extends React.Component {
   constructor(props = {}) {
     super(props);
 
-    const { interpolate, displayStats } = modules.freehand3D.state;
+    const { interpolate } = modules.freehand3D.state;
 
     this.state = {
-      interpolate,
-      displayStats,
+      interpolate
     };
 
-    this.onDisplayStatsToggleClick = this.onDisplayStatsToggleClick.bind(this);
     this.onInterpolateToggleClick = this.onInterpolateToggleClick.bind(this);
-  }
-
-  /**
-   * onDisplayStatsToggleClick - A Callback that toggles the display of stats
-   * window on the Freehand3DTool.
-   *
-   * @returns {null}
-   */
-  onDisplayStatsToggleClick() {
-    modules.freehand3D.setters.toggleDisplayStats();
-
-    this.setState({ displayStats: modules.freehand3D.state.displayStats });
   }
 
   /**
@@ -49,40 +35,24 @@ export default class RoiContourSettings extends React.Component {
   }
 
   render() {
-    const { interpolate, displayStats } = this.state;
+    const { interpolate } = this.state;
 
     return (
       <div
         style={{
           backgroundColor: 'var(--ui-gray-dark)',
           outline: '1px solid var(--ui-border-color)',
-          borderRadius: '4px',
+          borderRadius: '4px'
         }}
         className="roi-contour-menu-footer"
       >
         <h3>Settings</h3>
-        <div
-          style={{ cursor: 'select' }}
-          onClick={this.onInterpolateToggleClick}
-        >
+        <div style={{ cursor: 'select' }} onClick={this.onInterpolateToggleClick}>
           <label>
             {interpolate ? <Icon name="check" /> : <Icon name="times" />}
             Interpolation
           </label>
         </div>
-
-        {/* <div onClick={this.onDisplayStatsToggleClick}>
-          <svg>
-            <use
-              xlinkHref={
-                displayStats
-                  ? 'assets/icons.svg#icon-freehand-stats-on'
-                  : 'assets/icons.svg#icon-freehand-stats-off'
-              }
-            />
-          </svg>
-          <label>Stats</label>
-        </div> */}
       </div>
     );
   }
